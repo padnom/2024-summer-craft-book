@@ -79,8 +79,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercise 2 - All Properties
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Excercices", "Excercices", "{28B6E86B-ED38-4412-AB4D-2D49250D030D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solutions", "Solutions", "{CC89BE9A-520D-4A3C-B179-53F145FD6121}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
