@@ -3,7 +3,7 @@ using Xunit;
 
 namespace FizzBuzz.Tests
 {
-    public class FizzBuzzTests
+    public sealed class FizzBuzzTests
     {
         #region "Normal" numbers
 

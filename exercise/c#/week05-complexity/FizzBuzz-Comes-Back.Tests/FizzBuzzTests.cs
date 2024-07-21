@@ -3,7 +3,7 @@ using Xunit;
 
 namespace FizzBuzz
 {
-    public class FizzBuzzTests
+    public sealed class FizzBuzzTests
     {
         [Theory]
         [InlineData(1, "1")]
@@ -20,8 +20,8 @@ namespace FizzBuzz
         [InlineData(45, "FizzBuzz")]
         public void Returns_Number_Representation(int input, string expectedResult)
             => FizzBuzz.Convert(input)
-                .Should()
-                .Be(expectedResult);
+                       .Should()
+                       .Be(expectedResult);
 
         [Theory]
         [InlineData(0)]
@@ -29,7 +29,7 @@ namespace FizzBuzz
         [InlineData(-1)]
         public void Fails_For_Numbers_Out_Of_Range(int input)
             => ((Action) (() => FizzBuzz.Convert(input)))
-                .Should()
-                .Throw<OutOfRangeException>();
+               .Should()
+               .Throw<OutOfRangeException>();
     }
 }

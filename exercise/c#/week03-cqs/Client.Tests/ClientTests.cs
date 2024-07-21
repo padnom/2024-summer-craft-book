@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Client.Tests
 {
-    public class ClientTests
+    public sealed class ClientTests
     {
         private readonly Client.Accountability.Client _client = new(new Dictionary<string, double>
         {

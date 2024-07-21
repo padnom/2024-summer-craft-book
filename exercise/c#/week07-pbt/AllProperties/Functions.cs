@@ -11,6 +11,7 @@ namespace AllProperties
         public int[] Sort(int[] array)
         {
             Array.Sort(array);
+
             return array;
         }
 
@@ -27,6 +28,7 @@ namespace AllProperties
             {
                 // Simulated delay
                 await Task.Delay(1000);
+
                 return "Data from " + url;
             }
             catch (Exception)

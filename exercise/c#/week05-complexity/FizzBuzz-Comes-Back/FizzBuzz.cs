@@ -17,8 +17,10 @@
         {
             if (Is(Fizz_Buzz, input))
                 return "FizzBuzz";
+
             if (Is(Fizz, input))
                 return "Fizz";
+
             if (Is(Buzz, input))
                 return "Buzz";
 

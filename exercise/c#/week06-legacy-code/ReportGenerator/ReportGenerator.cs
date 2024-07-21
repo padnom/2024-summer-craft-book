@@ -1,6 +1,6 @@
 ﻿namespace ReportGenerator
 {
-    class ReportGenerator
+    sealed class ReportGenerator
     {
         public void GenerateReport(string reportType, List<ReportData> data)
         {
@@ -8,6 +8,7 @@
             {
                 Console.WriteLine("Starting CSV Report Generation...");
                 Console.WriteLine("CSV Header: ID, Value, Description");
+
                 foreach (var d in data)
                 {
                     Console.WriteLine($"{d.Id},{d.Value},{d.Description}");
@@ -20,6 +21,7 @@
                 Console.WriteLine("Starting PDF Report Generation...");
                 Console.WriteLine("PDF Report Title: Comprehensive Data Report");
                 Console.WriteLine("------------------------------------------------");
+
                 foreach (var d in data)
                 {
                     Console.WriteLine($"Data ID: {d.Id} | Data Value: {d.Value} | Description: {d.Description}");

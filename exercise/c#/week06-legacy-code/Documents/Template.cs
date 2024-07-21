@@ -6,15 +6,15 @@ namespace Documents
         string DocumentType)
     {
         private static IEnumerable<Template> TemplateMappings() => new[]
-        {
-            new Template(DocumentTemplate.DEERPP, RecordType.IndividualProspect, "DEER"),
-            new Template(DocumentTemplate.DEERPM, RecordType.LegalProspect, "DEER"),
-            new Template(DocumentTemplate.AUTP, RecordType.IndividualProspect, "AUTP"),
-            new Template(DocumentTemplate.AUTM, RecordType.LegalProspect, "AUTM"),
-            new Template(DocumentTemplate.SPEC, RecordType.All, "SPEC"),
-            new Template(DocumentTemplate.GLPP, RecordType.IndividualProspect, "GLPP"),
-            new Template(DocumentTemplate.GLPM, RecordType.LegalProspect, "GLPM")
-        };
+                                                                   {
+                                                                       new Template(DocumentTemplate.DEERPP, RecordType.IndividualProspect, "DEER"),
+                                                                       new Template(DocumentTemplate.DEERPM, RecordType.LegalProspect, "DEER"),
+                                                                       new Template(DocumentTemplate.AUTP, RecordType.IndividualProspect, "AUTP"),
+                                                                       new Template(DocumentTemplate.AUTM, RecordType.LegalProspect, "AUTM"),
+                                                                       new Template(DocumentTemplate.SPEC, RecordType.All, "SPEC"),
+                                                                       new Template(DocumentTemplate.GLPP, RecordType.IndividualProspect, "GLPP"),
+                                                                       new Template(DocumentTemplate.GLPM, RecordType.LegalProspect, "GLPM")
+                                                                   };
 
         public static Template FindTemplateFor(string documentType, string recordType)
         {

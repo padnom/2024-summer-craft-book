@@ -1,6 +1,6 @@
 namespace CommandProcessor
 {
-    public class CommandProcessor
+    public sealed class CommandProcessor
     {
         private readonly Dictionary<string, ICommand> _commandMap = new();
 
@@ -22,8 +22,7 @@ namespace CommandProcessor
             }
         }
     }
-
-    public class ActionCommand(Action action) : ICommand
+    public sealed class ActionCommand(Action action) : ICommand
     {
         public void Execute() => action();
     }

@@ -6,7 +6,6 @@ namespace FizzBuzz
     {
         private const int Min = 1;
         private const int Max = 100;
-
         private static readonly Map<int, string> Mapping =
             Map.create(
                 (15, "FizzBuzz"),
@@ -21,9 +20,9 @@ namespace FizzBuzz
 
         private static string ConvertSafely(int input)
             => Mapping
-                .Find(p => Is(p.Key, input))
-                .Map(kvp => kvp.Value)
-                .FirstOrDefault(input.ToString());
+               .Find(p => Is(p.Key, input))
+               .Map(kvp => kvp.Value)
+               .FirstOrDefault(input.ToString());
 
         private static bool Is(int divisor, int input) => input % divisor == 0;
 

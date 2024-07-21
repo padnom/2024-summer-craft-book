@@ -4,7 +4,7 @@ using static System.String;
 
 namespace Client.Accountability
 {
-    public class Client(IReadOnlyDictionary<string, double> orderLines)
+    public sealed class Client(IReadOnlyDictionary<string, double> orderLines)
     {
         private double _totalAmount;
 

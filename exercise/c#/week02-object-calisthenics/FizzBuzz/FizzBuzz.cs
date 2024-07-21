@@ -1,39 +1,28 @@
-﻿namespace FizzBuzz
+﻿namespace FizzBuzz;
+public static class FizzBuzz
 {
-    public static class FizzBuzz
+    public static string Convert(int input)
     {
-        public static string Convert(int input)
-        {
-            if (input > 0)
-            {
-                if (input <= 100)
-                {
-                    if (input % 3 == 0 && input % 5 == 0)
-                    {
-                        return "FizzBuzz";
-                    }
+        ValidateInput(input);
 
-                    if (input % 3 == 0)
-                    {
-                        return "Fizz";
-                    }
+        return input switch
+               {
+                   _ when IsDivisibleBy(input, 15) => "FizzBuzz",
+                   _ when IsDivisibleBy(input, 3)  => "Fizz",
+                   _ when IsDivisibleBy(input, 5)  => "Buzz",
+                   _                               => input.ToString(),
+               };
+    }
 
-                    if (input % 5 == 0)
-                    {
-                        return "Buzz";
-                    }
+    private static bool IsDivisibleBy(int number, int divisor)
+    {
+        return number % divisor == 0;
+    }
 
-                    return input.ToString();
-                }
-                else
-                {
-                    throw new OutOfRangeException();
-                }
-            }
-            else
-            {
-                throw new OutOfRangeException();
-            }
-        }
+    private static void ValidateInput(int input)
+    {
+        if (input <= 0
+            || input > 100)
+            throw new OutOfRangeException();
     }
 }
