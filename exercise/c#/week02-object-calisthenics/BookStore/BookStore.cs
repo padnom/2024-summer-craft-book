@@ -16,7 +16,10 @@ public class BookStore
 
         var newBook = Book.CreateBook(title, author, copies);
 
-        _bookInventory.Add(newBook);
+        if (newBook.IsValid)
+        {
+            _bookInventory.Add(newBook);
+        }
     }
 
     public void SellBook(Title title, Author author, Copies copies)

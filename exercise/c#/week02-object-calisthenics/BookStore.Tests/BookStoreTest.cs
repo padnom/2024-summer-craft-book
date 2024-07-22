@@ -65,7 +65,7 @@ public class BookStoreTest
     [Fact]
     public void DoesNotAddBookToStoreIfNoCopy()
     {
-        var noCopy = Copies.CreateEmptyCopies();
+        var noCopy = Copies.Create(0);
         var bookToAdd = CreateABook(noCopy.Value);
 
         _store.AddBook(bookToAdd!.Title, bookToAdd.Author, noCopy);

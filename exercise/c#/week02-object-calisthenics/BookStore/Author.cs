@@ -1,8 +1,8 @@
 namespace BookStore;
 public sealed class Author
 {
+    public readonly string Value;
     public bool IsValid => !string.IsNullOrWhiteSpace(Value);
-    public string Value { get; }
 
     private Author(string value) => Value = value;
 
