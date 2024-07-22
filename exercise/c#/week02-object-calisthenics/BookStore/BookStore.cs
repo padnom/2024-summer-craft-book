@@ -1,44 +1,39 @@
 namespace BookStore;
 public class BookStore
 {
-    private readonly List<Book> _inv = new();
+    private readonly BookInventory _bookInventory = [];
 
-    public void AddBook(string? title, string? author, int copies)
+    public void AddBook(Title title, Author author, Copies copies)
     {
-        if (title != null
-            && author != null
-            && copies > 0)
+        var book = GetBook(title, author);
+
+        if (book != null)
         {
-            Book? foundBook = null;
+            book.AddCopies(copies.Value);
 
-            foreach (var book in _inv)
-                if (book.Title == title
-                    && book.Author == author)
-                {
-                    foundBook = book;
-
-                    break;
-                }
-
-            if (foundBook != null)
-                foundBook.AddCopies(copies);
-            else
-                _inv.Add(new Book(title, author, copies));
+            return;
         }
+
+        var newBook = Book.CreateBook(title, author, copies);
+
+        _bookInventory.Add(newBook);
     }
 
-    public void SellBook(string title, string author, int copies)
+    public void SellBook(Title title, Author author, Copies copies)
     {
-        foreach (var book in _inv)
-            if (book.Title == title
-                && book.Author == author)
-            {
-                book.RemoveCopies(copies);
+        var book = GetBook(title, author);
 
-                if (book.Copies <= 0)
-                    _inv.Remove(book);
+        if (book == null)
+        {
+            return;
+        }
 
-                break;
-            }
+        book.RemoveCopies(copies.Value);
+        _bookInventory.RemoveBookIfNoMoreCopies(book);
+    }
+
+    protected Book? GetBook(Title title, Author author)
+    {
+        return _bookInventory.Find(b => b.Title.Value == title.Value && b.Author.Value == author.Value);
     }
 }

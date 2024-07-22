@@ -1,13 +1,13 @@
 namespace BookStore;
 public sealed class Book
 {
-    public string Author { get; set; }
+    public Author Author { get; }
+    public Copies Copies { get; private set; }
+    public bool HasCopies => Copies.Value > 0;
+    public bool IsValid => Title.IsValid && Author.IsValid && Copies.IsValid;
+    public Title Title { get; }
 
-    public int Copies { get; set; }
-
-    public string Title { get; set; }
-
-    public Book(string title, string author, int copies)
+    private Book(Title title, Author author, Copies copies)
     {
         Title = title;
         Author = author;
@@ -16,14 +16,16 @@ public sealed class Book
 
     public void AddCopies(int additionalCopies)
     {
-        if (additionalCopies > 0)
-            Copies += additionalCopies;
+        Copies = Copies.AddCopies(additionalCopies);
     }
+
+    public static Book? CreateBook(Title title, Author author, Copies copies) =>
+        title.IsValid && author.IsValid && copies.IsValid ? new Book(title, author, copies) : CreateInvalidBook();
 
     public void RemoveCopies(int soldCopies)
     {
-        if (soldCopies > 0
-            && Copies >= soldCopies)
-            Copies -= soldCopies;
+        Copies = Copies.RemoveCopies(soldCopies);
     }
+
+    private static Book? CreateInvalidBook() => new(Title.CreateEmptyTitle(), Author.CreateEmptyAuthor(), Copies.CreateEmptyCopies());
 }
