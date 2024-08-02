@@ -2,26 +2,24 @@ using static System.Environment;
 using static System.Globalization.CultureInfo;
 using static System.String;
 
-namespace Client.Accountability
+namespace Client.Accountability;
+public sealed class Client(IReadOnlyDictionary<string, double> orderLines)
 {
-    public sealed class Client(IReadOnlyDictionary<string, double> orderLines)
+    public string ToStatement() => $"{FormatLines()}{AddLineTotal()}";
+
+    private string FormatLines()
     {
-        private double _totalAmount;
-
-        public string ToStatement()
-            => $"{Join(
-                NewLine,
-                orderLines
-                    .Select(kvp => FormatLine(kvp.Key, kvp.Value))
-                    .ToList()
-            )}{NewLine}Total : {_totalAmount.ToString(InvariantCulture)}€";
-
-        private string FormatLine(string name, double value)
-        {
-            _totalAmount += value;
-            return name + " for " + value.ToString(InvariantCulture) + "€";
-        }
-
-        public double TotalAmount() => _totalAmount;
+        return Join(
+            NewLine,
+            orderLines
+                .Select(kvp => FormatLine(kvp.Key, kvp.Value))
+                .ToList()
+        );
     }
+
+    public double TotalAmount() => orderLines.Values.Sum();
+
+    private static string FormatLine(string name, double value) => name + " for " + value.ToString(InvariantCulture) + "€";
+
+    private string AddLineTotal() => $"{NewLine}Total : {TotalAmount().ToString(InvariantCulture)}€";
 }
