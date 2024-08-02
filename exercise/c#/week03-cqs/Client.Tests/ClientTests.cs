@@ -15,10 +15,8 @@ public sealed class ClientTests
     [Fact]
     public void Client_Should_Return_Statement()
     {
-        // Normalize newlines in the actual statement
         string normalizedActualStatement = _client.ToStatement().Replace("\r\n", "\n");
 
-        // Define and normalize the expected statement
         string normalizedExpectedStatement =
             """
                 Tenet Deluxe Edition for 45.99€
@@ -28,7 +26,6 @@ public sealed class ClientTests
                 Total : 130.97€
                 """.Replace("\r\n", "\n");
 
-        // Perform the assertion with normalized strings
         normalizedActualStatement.Should().BeEquivalentTo(normalizedExpectedStatement);
     }
 
