@@ -1,34 +1,30 @@
-﻿namespace FizzBuzz
+﻿namespace FizzBuzz;
+public static class FizzBuzz
 {
-    public static class FizzBuzz
-    {
-        private const int Min = 0;
-        private const int Max = 100;
-        private const int Fizz = 3;
-        private const int Buzz = 5;
-        private const int Fizz_Buzz = 15;
-
-        public static string Convert(int input)
-            => IsOutOfRange(input)
-                ? throw new OutOfRangeException()
-                : ConvertSafely(input);
-
-        private static string ConvertSafely(int input)
+    private const int Min = 1;
+    private const int Max = 100;
+    private static readonly Dictionary<int, string> _rules =
+        new()
         {
-            if (Is(Fizz_Buzz, input))
-                return "FizzBuzz";
+            { 15, "FizzBuzz" },
+            { 3, "Fizz" },
+            { 5, "Buzz" },
+        };
 
-            if (Is(Fizz, input))
-                return "Fizz";
+    public static string Convert(int input)
+    {
+        ValidateInput(input);
 
-            if (Is(Buzz, input))
-                return "Buzz";
+        return ConvertSafely(input);
+    }
 
-            return input.ToString();
+    private static string ConvertSafely(int input) => _rules.FirstOrDefault(rule => input % rule.Key == 0).Value ?? input.ToString();
+
+    private static void ValidateInput(int input)
+    {
+        if (input is < Min or > Max)
+        {
+            throw new OutOfRangeException();
         }
-
-        private static bool Is(int divisor, int input) => input % divisor == 0;
-
-        private static bool IsOutOfRange(int input) => input is <= Min or > Max;
     }
 }
